@@ -3,6 +3,7 @@ import { render } from "react-dom"
 import TodoListClass from "./components/example/class"
 import Provider from "./Provider"
 import "@atlaskit/css-reset"
+import "./locales"
 
 const App = () => {
   return (

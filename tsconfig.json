@@ -13,7 +13,10 @@
       "moduleResolution": "node",
       "noUnusedLocals": true,
       "skipLibCheck": true,
-      "baseUrl": "./"
+      "baseUrl": "./",
+      "esModuleInterop": true,
+      "resolveJsonModule": true,
+      "typeRoots": ["./node_modules/@types/", "./src/types/"]
     },
     "include": ["src/**/*.tsx", "src/**/*.ts"],
     "exclude": ["node_modules", "typings/*"]
