@@ -32,21 +32,6 @@ export default () => {
             </Link>
           </Section>
         ))}
-        {/* <Section>
-          <Link to="/">
-            <ButtonItem>Users</ButtonItem>
-          </Link>
-        </Section>
-        <Section hasSeparator>
-          <Link to="/posts">
-            <ButtonItem>Posts</ButtonItem>
-          </Link>
-        </Section>
-        <Section hasSeparator>
-          <Link to="/todos">
-            <ButtonItem>Todos</ButtonItem>
-          </Link>
-        </Section> */}
       </MenuGroup>
     </Box>
   )

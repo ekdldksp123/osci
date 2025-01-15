@@ -1,6 +1,6 @@
 import { token } from "@atlaskit/tokens"
 import { Box } from "@atlaskit/primitives/compiled"
-import React, { useEffect } from "react"
+import React from "react"
 import Select, { type OptionType } from "@atlaskit/select"
 import { useTranslation } from "react-i18next"
 import { SupportedLanguage } from "src/types"
@@ -14,10 +14,9 @@ export default () => {
   const { i18n, t } = useTranslation("common")
 
   const handleChangeLanguage = async (language: SupportedLanguage) => {
-    i18n.changeLanguage(language).then(() => console.log(i18n.language))
+    i18n.changeLanguage(language)
+    // .then(() => console.log(i18n.language))
   }
-
-  // useEffect(() => {}, [i18n.language])
 
   return (
     <Box
@@ -30,7 +29,6 @@ export default () => {
         borderBottom: "0.5px solid"
       }}
     >
-      {/* 오픈소스컨설팅 FE 과제 */}
       {t("app-title")}
       <Select
         inputId="async-select-example"
