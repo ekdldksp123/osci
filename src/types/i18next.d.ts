@@ -8,9 +8,12 @@ declare module "react-i18next" {
   // and extend them!
   interface CustomTypeOptions {
     // custom namespace type if you changed it
-    defaultNS: "todo"
+    defaultNS: "post"
     // custom resources type
     resources: {
+      common: typeof ko.common
+      post: typeof ko.post
+      user: typeof ko.user
       todo: typeof ko.todo
       //   about: typeof ko
     }

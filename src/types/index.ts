@@ -4,3 +4,8 @@ export type Todo = {
   title: string
   userId: number
 }
+
+export type MenuItem = {
+  href: string
+  localKey: string
+}

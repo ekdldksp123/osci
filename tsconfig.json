@@ -1,24 +1,28 @@
 {
     "compilerOptions": {
-      "module": "es6",
       "jsx": "react",
-      "target": "es5",
+      "target": "es6",
+      "module": "ESNext",
       "sourceMap": true,
       "outDir": "dist/",
       "allowJs": true,
+      "strictNullChecks": true,
       "preserveConstEnums": true,
       "experimentalDecorators": true,
       "pretty": true,
       "allowSyntheticDefaultImports": true,
       "moduleResolution": "node",
-      "noUnusedLocals": true,
       "skipLibCheck": true,
       "baseUrl": "./",
       "esModuleInterop": true,
       "resolveJsonModule": true,
+      "noUnusedLocals": true, //쓰지않는 지역변수 있으면 에러내기
+      "noUnusedParameters": true, //쓰지않는 파라미터 있으면 에러내기
+      "noImplicitReturns": true, //함수에서 return 빼먹으면 에러내기 
+      "noFallthroughCasesInSwitch": true, //switch문 이상하면 에러내기
       "typeRoots": ["./node_modules/@types/", "./src/types/"]
     },
     "include": ["src/**/*.tsx", "src/**/*.ts"],
-    "exclude": ["node_modules", "typings/*"]
+    "exclude": ["node_modules"]
   }
   
