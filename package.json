@@ -39,10 +39,13 @@
     "react-dom": "16.8",
     "react-i18next": "^15.4.0",
     "react-router-dom": "5.2.1",
-    "src": "^1.1.2"
+    "src": "^1.1.2",
+    "uuidv4": "^6.2.13",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@compiled/parcel-config": "^0.5.5",
+    "@tanstack/eslint-plugin-query": "4",
     "@types/node": "^14.14.10",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",

@@ -3,8 +3,18 @@ import { Box } from "@atlaskit/primitives/compiled"
 import { ButtonItem, MenuGroup, Section } from "@atlaskit/menu"
 import React from "react"
 import { Link } from "react-router-dom"
+import { v4 as uuidv4 } from "uuid"
+import { useTranslation } from "react-i18next"
+import { MenuItem } from "src/types"
+
+export const MENU_LIST: MenuItem[] = [
+  { localKey: "users", href: "/" },
+  { localKey: "posts", href: "/posts" },
+  { localKey: "todos", href: "/todos" }
+]
 
 export default () => {
+  const { t } = useTranslation("common")
   return (
     <Box
       style={{
@@ -15,7 +25,14 @@ export default () => {
       }}
     >
       <MenuGroup>
-        <Section>
+        {MENU_LIST.map(({ href, localKey }, idx) => (
+          <Section key={uuidv4()} hasSeparator={idx !== 0}>
+            <Link to={href}>
+              <ButtonItem>{t(localKey)}</ButtonItem>
+            </Link>
+          </Section>
+        ))}
+        {/* <Section>
           <Link to="/">
             <ButtonItem>Users</ButtonItem>
           </Link>
@@ -29,7 +46,7 @@ export default () => {
           <Link to="/todos">
             <ButtonItem>Todos</ButtonItem>
           </Link>
-        </Section>
+        </Section> */}
       </MenuGroup>
     </Box>
   )

@@ -1,1 +1,6 @@
-{"app-title": "OSCI-FE-TEST"}
+{
+    "app-title": "OSCI-FE-TEST",
+    "users": "Users",
+    "posts": "Posts",
+    "todos": "Todos"
+}
