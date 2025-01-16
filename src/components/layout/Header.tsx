@@ -11,7 +11,7 @@ const LNG_OPTS: OptionType[] = [
 ]
 
 export default () => {
-  const { i18n, t } = useTranslation("common")
+  const { i18n, t } = useTranslation()
 
   const handleChangeLanguage = async (lng: string | number | undefined) => {
     const language = lng as unknown as SupportedLanguage
@@ -31,7 +31,7 @@ export default () => {
         borderBottom: "0.5px solid"
       }}
     >
-      {t("app-title")}
+      {t("common:app-title")}
       <Select
         inputId="async-select-example"
         cacheOptions

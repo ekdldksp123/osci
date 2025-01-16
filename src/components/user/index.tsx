@@ -1,4 +1,3 @@
-import UserCard from "./UserCard"
-import UserSkeleton from "./UserSkeleton"
+import UserList from "./UserList"
 
-export { UserCard, UserSkeleton }
+export { UserList }

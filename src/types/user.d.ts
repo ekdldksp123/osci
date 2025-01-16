@@ -1,1 +1,5 @@
-interface UserListResponse {}
+export interface User {
+  id: string
+  name: string
+  email: string
+}

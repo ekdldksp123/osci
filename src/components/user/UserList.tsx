@@ -1,14 +1,35 @@
-import React, { FC } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { Grid } from "@atlaskit/primitives"
 import { v4 as uuidv4 } from "uuid"
 import { getAllUsers } from "../../../src/api"
-import { SectionMessage, UserCard, UserSkeleton } from "../../../src/components"
+import { AutoComplete, SectionMessage } from "../../../src/components"
 import { useTranslation } from "react-i18next"
+import UserSkeleton from "./UserSkeleton"
+import UserCard from "./UserCard"
 
-const UserList: FC = () => {
-  const { t } = useTranslation("user")
-  const { isLoading, isError, data } = useQuery({
+import React from "react"
+
+import Form, { Field } from "@atlaskit/form"
+import SearchIcon from "@atlaskit/icon/core/search"
+import Textfield from "@atlaskit/textfield"
+
+function TextFieldElementsBeforeAndAfterExample() {
+  return (
+    <Form onSubmit={(formData) => console.log("form data", formData)}>
+      <Field name="user-search" defaultValue="">
+        {({ fieldProps }: any) => (
+          <Textfield
+            {...fieldProps}
+            elemBeforeInput={<SearchIcon label="" />}
+          />
+        )}
+      </Field>
+    </Form>
+  )
+}
+
+export default () => {
+  const { isLoading, isError, data, refetch } = useQuery({
     queryKey: ["userList"],
     queryFn: getAllUsers
   })
@@ -29,12 +50,10 @@ const UserList: FC = () => {
 
   return (
     <Grid>
-      <h1>{t("list")}</h1>
+      <AutoComplete data={data} keys={["name", "email"]} />
       {data.map((user) => (
         <UserCard key={uuidv4()} id={user.id} name={user.name} />
       ))}
     </Grid>
   )
 }
-
-export default UserList

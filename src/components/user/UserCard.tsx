@@ -1,8 +1,7 @@
 import React from "react"
 
 import Avatar, { AvatarItem } from "@atlaskit/avatar"
-import { Box } from "@atlaskit/primitives"
-import { token } from "@atlaskit/tokens"
+import { ButtonItem } from "@atlaskit/menu"
 
 interface UserCardProps {
   id: string
@@ -12,12 +11,12 @@ interface UserCardProps {
 
 export default ({ id, name, email }: UserCardProps) => {
   return (
-    <Box style={{ cursor: "pointer" }}>
+    <ButtonItem>
       <AvatarItem
         avatar={<Avatar name={name} presence="online" />}
         primaryText={name}
         //   onClick={}
       />
-    </Box>
+    </ButtonItem>
   )
 }

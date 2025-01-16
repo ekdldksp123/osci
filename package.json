@@ -8,7 +8,7 @@
     "launch": "yarn build && serve -s dist",
     "clean": "rm -rf dist",
     "lint": "tslint -c tslint.json -p tsconfig.json -t stylish",
-    "start": "parcel -p 3000 --no-autoinstall index.html"
+    "start": "parcel -p 3000 --no-cache index.html"
   },
   "keywords": [],
   "author": "punchlips97",
