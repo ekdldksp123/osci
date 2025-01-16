@@ -3,7 +3,6 @@ import { initReactI18next } from "react-i18next"
 import LanguageDetector from "i18next-browser-languagedetector"
 
 import * as en from "./en"
-
 import * as ko from "./ko"
 
 const resources: Resource = {
@@ -15,15 +14,17 @@ const resources: Resource = {
   }
 } as const
 
+const initialLanguage = localStorage.getItem("language") || "ko-KR"
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    lng: initialLanguage,
     resources,
-    // fallbackLng: ["ko-KR"], // 초기 설정 언어
     fallbackLng: {
       "en-US": ["en-US"], // default 불러오는 것이 실패했을 경우
-      default: ["ko-KR"]
+      default: [initialLanguage]
     },
     debug: true,
     keySeparator: false,

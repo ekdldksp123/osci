@@ -13,9 +13,11 @@ const LNG_OPTS: OptionType[] = [
 export default () => {
   const { i18n, t } = useTranslation("common")
 
-  const handleChangeLanguage = async (language: SupportedLanguage) => {
-    i18n.changeLanguage(language)
-    // .then(() => console.log(i18n.language))
+  const handleChangeLanguage = async (lng: string | number | undefined) => {
+    const language = lng as unknown as SupportedLanguage
+    i18n
+      .changeLanguage(language)
+      .then(() => localStorage.setItem("language", language))
   }
 
   return (

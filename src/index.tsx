@@ -11,12 +11,10 @@ import App from "./App"
 const queryClient = new QueryClient()
 
 render(
-  // <React.StrictMode>
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
       <App />
     </QueryClientProvider>
   </BrowserRouter>,
-  // </React.StrictMode>,
   document.getElementById("root")
 )
