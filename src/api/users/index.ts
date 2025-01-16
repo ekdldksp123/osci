@@ -12,7 +12,7 @@ export const getAllUsers = async () => {
   }
 }
 
-export const getUserDetail = async (userId: string) => {
+export const getUserDetail = async (userId: number) => {
   try {
     const { data } = await instance.get(`${API_PREFIX}/${userId}`)
     return data
