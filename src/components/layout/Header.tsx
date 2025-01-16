@@ -3,7 +3,7 @@ import { Box } from "@atlaskit/primitives/compiled"
 import React from "react"
 import Select, { type OptionType } from "@atlaskit/select"
 import { useTranslation } from "react-i18next"
-import { SupportedLanguage } from "src/types"
+import { SupportedLanguage } from "~/types"
 
 const LNG_OPTS: OptionType[] = [
   { label: "한국어", value: "ko-KR" },

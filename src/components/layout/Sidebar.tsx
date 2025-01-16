@@ -5,7 +5,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { v4 as uuidv4 } from "uuid"
 import { useTranslation } from "react-i18next"
-import { MenuItem } from "src/types"
+import { MenuItem } from "~/types"
 
 export const MENU_LIST: MenuItem[] = [
   { localKey: "users", href: "/" },

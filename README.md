@@ -4,3 +4,4 @@
 - Typescript 4.5
 - Parcel 1.12.4
 - React-i18Next 22.5.1
+- Yarn

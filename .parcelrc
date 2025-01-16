@@ -1,3 +1,4 @@
 {
-  "extends": ["@parcel/config-default", "@compiled/parcel-config"]
+  "extends": ["@parcel/config-default", "@compiled/parcel-config"],
+  "resolvers": ["parcel-resolver-ts-base-url", "..."]
 }

@@ -20,7 +20,9 @@ const App: FC = () => {
       <Header />
       <Box style={{ display: "flex", width: "100%", height: "100%" }}>
         <Sidebar />
-        <Box style={{ padding: token("space.100") }}>
+        <Box
+          style={{ padding: token("space.100"), width: "100%", height: "100%" }}
+        >
           <Switch>
             <Suspense fallback={<div>Loading...</div>}>
               <Route exact path="/" component={Users} />
