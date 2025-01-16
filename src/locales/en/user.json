@@ -3,5 +3,6 @@
     "name": "Name",
     "name.help-text": "You can use letters only",
     "email": "Email",
-    "email.help-text": "Must contain @ symbol"
+    "email.help-text": "Must contain @ symbol",
+    "search.placeholder": "Search by Name or Email"
 }

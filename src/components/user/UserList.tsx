@@ -6,12 +6,14 @@ import UserSkeleton from "./UserSkeleton"
 import UserCard from "./UserCard"
 
 import { useSingleUserQuery, useUsersQuery } from "../../../src/queries"
+import { useTranslation } from "react-i18next"
 
 export default () => {
+  const { t } = useTranslation("user")
+
   const [searchId, setSearchId] = useState<number>()
 
   const { isLoading, isError, data, refetch } = useUsersQuery()
-
   const { data: searchedData, refetch: searchUser } = useSingleUserQuery({
     searchId,
     enabled: false
@@ -46,12 +48,9 @@ export default () => {
           data={data ?? []}
           keys={["name", "email"]}
           onChange={setSearchId}
+          placeholder={t("search.placeholder")}
         />
-        <UserCard
-          key={uuidv4()}
-          id={searchedData.id}
-          name={searchedData.name}
-        />
+        <UserCard key={uuidv4()} {...searchedData} />
       </Grid>
     )
   }
@@ -62,9 +61,10 @@ export default () => {
         data={data ?? []}
         keys={["name", "email"]}
         onChange={setSearchId}
+        placeholder={t("search.placeholder")}
       />
       {data?.map((user) => (
-        <UserCard key={uuidv4()} id={user.id} name={user.name} />
+        <UserCard key={uuidv4()} {...user} />
       ))}
     </Grid>
   )

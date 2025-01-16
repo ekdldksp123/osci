@@ -15,7 +15,6 @@ declare module "react-i18next" {
       post: typeof ko.post
       user: typeof ko.user
       todo: typeof ko.todo
-      //   about: typeof ko
     }
   }
 }

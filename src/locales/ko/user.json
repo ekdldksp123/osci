@@ -3,5 +3,6 @@
     "name": "이름",
     "name.help-text": "문자만 사용할 수 있습니다",
     "email": "이메일",
-    "email.help-text": "@ 기호를 반드시 포함해주세요"
+    "email.help-text": "@ 기호를 반드시 포함해주세요",
+    "search.placeholder": "이름이나 이메일로 검색"
 }

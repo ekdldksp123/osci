@@ -3,12 +3,13 @@ import React, { Dispatch, KeyboardEvent, SetStateAction, useState } from "react"
 import Select, { type OptionsType, type OptionType } from "@atlaskit/select"
 
 interface AutoCompleteProps<T = any, K = keyof T> {
+  placeholder: string
   data: T[]
   keys: K[]
   onChange: Dispatch<SetStateAction<number | undefined>>
 }
 
-export default ({ data, keys, onChange }: AutoCompleteProps) => {
+export default ({ placeholder, data, keys, onChange }: AutoCompleteProps) => {
   const [value, setValue] = useState<OptionType>()
 
   const filterData = (inputValue: string) => {
@@ -29,7 +30,7 @@ export default ({ data, keys, onChange }: AutoCompleteProps) => {
     new Promise<OptionsType>((resolve) => {
       setTimeout(() => {
         resolve(filterData(inputValue))
-      }, 500)
+      }, 250)
     })
 
   const onChangeHandler = (e: OptionType) => {
@@ -46,7 +47,7 @@ export default ({ data, keys, onChange }: AutoCompleteProps) => {
   return (
     <Select
       inputId="auto-complete"
-      placeholder="Search"
+      placeholder={placeholder}
       cacheOptions
       defaultOptions
       isSearchable
