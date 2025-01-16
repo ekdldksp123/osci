@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
-import { getAllUsers, getUserDetail } from "~/api"
-import { User } from "~/types/user"
+import { getAllUsers, getUserDetail } from "../../../src/api"
+import { User } from "../../../src/types/user"
 
 export const useUsersQuery = () => {
   const { isLoading, isError, data, refetch } = useQuery<User[]>({
@@ -16,7 +16,7 @@ interface ISingleUserQuery {
 }
 
 export const useSingleUserQuery = ({ searchId, enabled }: ISingleUserQuery) => {
-  const { isLoading, isError, data, refetch } = useQuery({
+  const { isLoading, isError, data, refetch } = useQuery<User>({
     queryKey: ["getUserDetail", searchId],
     queryFn: () => (searchId !== undefined ? getUserDetail(searchId) : null),
     enabled

@@ -1,3 +1,7 @@
 {
-     "list": "User List"
+    "update": "Update",
+    "name": "Name",
+    "name.help-text": "You can use letters only",
+    "email": "Email",
+    "email.help-text": "Must contain @ symbol"
 }

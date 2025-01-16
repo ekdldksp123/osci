@@ -5,7 +5,7 @@ import { AutoComplete, SectionMessage } from "../../../src/components"
 import UserSkeleton from "./UserSkeleton"
 import UserCard from "./UserCard"
 
-import { useSingleUserQuery, useUsersQuery } from "~/queries"
+import { useSingleUserQuery, useUsersQuery } from "../../../src/queries"
 
 export default () => {
   const [searchId, setSearchId] = useState<number>()
