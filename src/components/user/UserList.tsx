@@ -1,25 +1,19 @@
-import { useQuery } from "@tanstack/react-query"
+import React, { useEffect, useState } from "react"
 import { Grid } from "@atlaskit/primitives"
 import { v4 as uuidv4 } from "uuid"
-import { getAllUsers, getUserDetail } from "../../../src/api"
 import { AutoComplete, SectionMessage } from "../../../src/components"
 import UserSkeleton from "./UserSkeleton"
 import UserCard from "./UserCard"
 
-import React, { useEffect, useState } from "react"
-import { User } from "~/types/user"
+import { useSingleUserQuery, useUsersQuery } from "~/queries"
 
 export default () => {
   const [searchId, setSearchId] = useState<number>()
 
-  const { isLoading, isError, data, refetch } = useQuery<User[]>({
-    queryKey: ["getAllUsers"],
-    queryFn: getAllUsers
-  })
+  const { isLoading, isError, data, refetch } = useUsersQuery()
 
-  const { data: searchedData, refetch: searchUser } = useQuery({
-    queryKey: ["getUserDetail", searchId],
-    queryFn: () => (searchId !== undefined ? getUserDetail(searchId) : null),
+  const { data: searchedData, refetch: searchUser } = useSingleUserQuery({
+    searchId,
     enabled: false
   })
 
@@ -49,7 +43,7 @@ export default () => {
     return (
       <Grid>
         <AutoComplete
-          data={data}
+          data={data ?? []}
           keys={["name", "email"]}
           onChange={setSearchId}
         />
@@ -65,11 +59,11 @@ export default () => {
   return (
     <Grid>
       <AutoComplete
-        data={data}
+        data={data ?? []}
         keys={["name", "email"]}
         onChange={setSearchId}
       />
-      {data.map((user) => (
+      {data?.map((user) => (
         <UserCard key={uuidv4()} id={user.id} name={user.name} />
       ))}
     </Grid>
