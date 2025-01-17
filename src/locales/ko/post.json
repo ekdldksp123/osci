@@ -1,1 +1,7 @@
-{}
+{
+    "startDate": "시작 날짜",
+    "endDate": "끝 날짜",
+    "id": "아이디",
+    "title": "제목",
+    "createdAt": "생성일자"
+}

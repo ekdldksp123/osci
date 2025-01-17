@@ -1,13 +1,8 @@
 import React, { FC } from "react"
-import { Grid } from "@atlaskit/primitives"
-import { UserList } from "../../../src/components"
+import { UserList } from "../../components"
 
 const Users: FC = () => {
-  return (
-    <Grid>
-      <UserList />
-    </Grid>
-  )
+  return <UserList />
 }
 
 export default Users

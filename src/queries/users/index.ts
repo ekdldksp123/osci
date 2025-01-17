@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
-import { getAllUsers, getUserDetail } from "../../../src/api"
-import { User } from "../../../src/types/user"
+import { getAllUsers, getUserDetail } from "../../api"
+import { User } from "../../types/user"
 
 export const useUsersQuery = () => {
   const { isLoading, isError, data, refetch } = useQuery<User[]>({

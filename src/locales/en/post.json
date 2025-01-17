@@ -1,1 +1,7 @@
-{}
+{
+    "startDate": "Start date",
+    "endDate": "End date",
+    "id": "ID",
+    "title": "Title",
+    "createdAt": "CreatedAt"
+}

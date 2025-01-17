@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { Grid } from "@atlaskit/primitives"
 import { v4 as uuidv4 } from "uuid"
-import { AutoComplete, SectionMessage } from "../../../src/components"
+import { AutoComplete, SectionMessage } from "../../components"
 import UserSkeleton from "./UserSkeleton"
 import UserCard from "./UserCard"
 
-import { useSingleUserQuery, useUsersQuery } from "../../../src/queries"
+import { useSingleUserQuery, useUsersQuery } from "../../queries"
 import { useTranslation } from "react-i18next"
 
 export default () => {

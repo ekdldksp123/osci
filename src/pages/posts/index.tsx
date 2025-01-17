@@ -1,7 +1,8 @@
 import React, { FC } from "react"
+import { PostList } from "../../components/post"
 
 const Posts: FC = () => {
-  return <h1>Posts</h1>
+  return <PostList />
 }
 
 export default Posts
