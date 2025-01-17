@@ -549,6 +549,19 @@
     "@emotion/react" "^11.7.1"
     lodash "^4.17.21"
 
+"@atlaskit/textarea@^5.7.3":
+  version "5.7.3"
+  resolved "https://registry.yarnpkg.com/@atlaskit/textarea/-/textarea-5.7.3.tgz#56d00f2fb0c34c915b3ef1bc6cbb8ee253ee71ad"
+  integrity sha512-z1mNXPaqDsvu1S628dSVeRPSS1VRpqUqGnNoe5Rm0ROYyQEnnfsu6Z31l6WlR0DHkipJUjyvfdi+jzHdAdq3bg==
+  dependencies:
+    "@atlaskit/analytics-next" "^10.2.0"
+    "@atlaskit/platform-feature-flags" "^0.3.0"
+    "@atlaskit/primitives" "^13.3.0"
+    "@atlaskit/theme" "^14.0.0"
+    "@atlaskit/tokens" "^3.1.0"
+    "@babel/runtime" "^7.0.0"
+    "@emotion/react" "^11.7.1"
+
 "@atlaskit/textfield@^6.7.1":
   version "6.7.1"
   resolved "https://registry.yarnpkg.com/@atlaskit/textfield/-/textfield-6.7.1.tgz#42a118a916ddf4bc99ce9713de4b2220eca829fc"

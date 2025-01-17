@@ -3,6 +3,9 @@
     "endDate": "끝 날짜",
     "id": "아이디",
     "title": "제목",
+    "content": "내용",
     "createdAt": "생성일자",
-    "search.placeholder": "제목으로 검색"
+    "search.placeholder": "제목으로 검색",
+    "update": "수정",
+    "delete": "삭제"
 }

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React, { Suspense, lazy } from "react"
 
 import Button, { IconButton } from "@atlaskit/button/new"
 import CrossIcon from "@atlaskit/icon/glyph/cross"
@@ -8,32 +8,33 @@ import Modal, {
   ModalHeader,
   ModalTitle
 } from "@atlaskit/modal-dialog"
-import { Flex, Grid } from "@atlaskit/primitives"
+import { Flex, Grid, Text } from "@atlaskit/primitives"
 import {
   gridStyles,
   closeContainerStyles,
   titleContainerStyles
 } from "../../styles"
 
-import Form, { ErrorMessage, Field, HelperMessage } from "@atlaskit/form"
-import TextField from "@atlaskit/textfield"
-
 import Avatar from "@atlaskit/avatar"
-import { User } from "../../types/user"
 import { useTranslation } from "react-i18next"
+import { CommentType, Post } from "../../types/post"
+import CommentList from "./CommentList"
 
-interface UserModalProps {
-  user: User
+// const CommentList = lazy(() => import("./CommentList"))
+
+interface PostModalProps {
+  post: Post
+  comments: CommentType[]
   onClose: () => void
 }
 
-type UserFormType = {
-  name: string
-  email: string
-}
+export default ({
+  post: { id, title, content },
+  comments,
+  onClose
+}: PostModalProps) => {
+  const { t } = useTranslation("post")
 
-export default ({ user: { id, name, email }, onClose }: UserModalProps) => {
-  const { t } = useTranslation("user")
   return (
     <Modal onClose={onClose}>
       <ModalHeader>
@@ -50,50 +51,49 @@ export default ({ user: { id, name, email }, onClose }: UserModalProps) => {
             <ModalTitle>
               <Flex alignItems="center" gap="space.100">
                 <Avatar />
-                {name}
+                {title}
               </Flex>
             </ModalTitle>
           </Flex>
         </Grid>
       </ModalHeader>
       <ModalBody>
-        <Form<UserFormType> onSubmit={(data) => console.log(data)}>
+        <Text weight="regular">{content}</Text>
+        {/* <Suspense fallback={<div>...Loading</div>}> */}
+        <CommentList {...comments} />
+        {/* </Suspense> */}
+        {/* <Form<PostFormType> onSubmit={(data) => console.log(data)}>
           {({ formProps, submitting }) => (
             <form {...formProps}>
               <Field
-                name="name"
-                label={t("name")}
-                defaultValue={name}
+                name="title"
+                label={t("title")}
+                defaultValue={title}
                 isRequired
               >
                 {({ fieldProps, error }) => (
                   <Fragment>
                     <TextField autoComplete="off" {...fieldProps} />
-                    {!error && (
-                      <HelperMessage>{t("name.help-text")}</HelperMessage>
-                    )}
                   </Fragment>
                 )}
               </Field>
               <Field
-                name="email"
-                label={t("email")}
-                defaultValue={email}
+                name="content"
+                label={t("content")}
+                defaultValue={content}
                 isRequired
               >
                 {({ fieldProps, error }) => (
                   <Fragment>
-                    <TextField {...fieldProps} />
-                    {!error && (
-                      <HelperMessage>{t("email.help-text")}</HelperMessage>
-                    )}
+                    <TextArea {...fieldProps} />
+
                     {error && <ErrorMessage>{error}</ErrorMessage>}
                   </Fragment>
                 )}
               </Field>
             </form>
           )}
-        </Form>
+        </Form> */}
       </ModalBody>
       <ModalFooter>
         <Button appearance="primary" onClick={onClose}>

@@ -15,7 +15,8 @@ export default (user: User) => {
     <HeadlessToggle>
       {(isOpen, toggle) => {
         const onClickHandler = () => {
-          refetch().then(() => toggle())
+          refetch()
+          toggle()
         }
         return (
           <>

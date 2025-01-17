@@ -1,10 +1,11 @@
 import React, { FC, Suspense, lazy } from "react"
 import { token, setGlobalTheme } from "@atlaskit/tokens"
 import { Header, Sidebar } from "./components/layout"
-import { Route, Link, Switch } from "react-router-dom"
+import { Route, Switch } from "react-router-dom"
 import { Box } from "@atlaskit/primitives"
 
 const Posts = lazy(() => import("./pages/posts"))
+const Post = lazy(() => import("./pages/post"))
 const Users = lazy(() => import("./pages/users"))
 const Todos = lazy(() => import("./pages/todos"))
 
@@ -27,7 +28,8 @@ const App: FC = () => {
             <Suspense fallback={<div>Loading...</div>}>
               <Route exact path="/" component={Users} />
               <Route exact path="/posts" component={Posts} />
-              <Route exact path="/todos" component={Todos} />
+              <Route exact path="/post/:postId" component={Post} />
+              <Route exact path="/todo" component={Todos} />
             </Suspense>
           </Switch>
         </Box>

@@ -1,14 +1,13 @@
 import React, { useCallback, useState } from "react"
 import DynamicTable from "@atlaskit/dynamic-table"
-import { Flex, Grid } from "@atlaskit/primitives"
+import { Grid } from "@atlaskit/primitives"
 import { AutoComplete, SectionMessage } from "../common"
 import { usePostsQuery, useSinglePostQuery } from "../../queries"
-import { DatePicker } from "@atlaskit/datetime-picker"
 import { useTranslation } from "react-i18next"
 import { v4 as uuidv4 } from "uuid"
 import { useSearch } from "../../hooks"
-import { IconButton } from "@atlaskit/button/new"
-import FilterIcon from "@atlaskit/icon/core/filter"
+import PostFilter from "./PostFilter"
+import { Link } from "react-router-dom"
 
 type ListItem = {
   id: number
@@ -75,33 +74,7 @@ export default () => {
         placeholder={t("search.placeholder")}
         onSearch={searchHandler}
       />
-      <Grid templateColumns="1fr 1fr 0.1fr" gap="space.100" alignItems="center">
-        <Flex direction="column">
-          <DatePicker
-            dateFormat="YYYY-MM-DD"
-            placeholder={t("startDate") || ""}
-            id="post-startDate"
-            clearControlLabel="Clear date"
-            shouldShowCalendarButton
-            openCalendarLabel="open calendar"
-            onChange={(e) => setStartDate(e)}
-          />
-        </Flex>
-        <Flex direction="column">
-          <DatePicker
-            dateFormat="YYYY-MM-DD"
-            placeholder={t("endDate") || ""}
-            id="post-endDate"
-            clearControlLabel="Clear date"
-            shouldShowCalendarButton
-            openCalendarLabel="open calendar"
-            onChange={(e) => setEndDate(e)}
-          />
-        </Flex>
-        <Flex justifyContent="center">
-          <IconButton icon={FilterIcon} label="Filter" type="submit" />
-        </Flex>
-      </Grid>
+      <PostFilter setStartDate={setStartDate} setEndDate={setEndDate} />
       <DynamicTable
         caption=""
         head={headers}
@@ -109,15 +82,12 @@ export default () => {
           key: uuidv4(),
           cells: [
             { key: id, content: id },
-            { key: title, content: title },
+            { key: title, content: <Link to={`/post/${id}`}>{title}</Link> },
             { key: createdAt, content: createdAt }
           ]
         }))}
         rowsPerPage={5}
         defaultPage={1}
-        isFixedSize
-        onSort={() => console.log("onSort")}
-        onSetPage={() => console.log("onSetPage")}
         isLoading={isLoading}
       />
     </Grid>

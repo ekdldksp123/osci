@@ -31,6 +31,7 @@
     "@atlaskit/section-message": "^6.8.3",
     "@atlaskit/select": "^18.9.1",
     "@atlaskit/table-tree": "^10.0.8",
+    "@atlaskit/textarea": "^5.7.3",
     "@atlaskit/textfield": "^6.7.1",
     "@atlaskit/tokens": "^3.0.0",
     "@compiled/react": "^0.18.1",

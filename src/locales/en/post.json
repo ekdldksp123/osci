@@ -3,6 +3,9 @@
     "endDate": "End date",
     "id": "ID",
     "title": "Title",
+    "content": "Content",
     "createdAt": "CreatedAt",
-    "search.placeholder": "Search by Title"
+    "search.placeholder": "Search by Title",
+    "update": "Update",
+    "delete": "Delete"
 }
