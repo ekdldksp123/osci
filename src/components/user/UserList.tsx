@@ -1,10 +1,4 @@
-import React, {
-  ForwardedRef,
-  useCallback,
-  useEffect,
-  useRef,
-  useState
-} from "react"
+import React, { useCallback, useState } from "react"
 import { Grid } from "@atlaskit/primitives"
 import { v4 as uuidv4 } from "uuid"
 import { AutoComplete, SectionMessage } from "../../components"
@@ -13,23 +7,25 @@ import UserCard from "./UserCard"
 
 import { useSingleUserQuery, useUsersQuery } from "../../queries"
 import { useTranslation } from "react-i18next"
-import { AtlaskitSelectRefType } from "@atlaskit/select/dist/types/types"
 import { User } from "../../types/user"
+import { useSearch } from "../../hooks"
 
 const SEARCH_KEYS = ["name", "email"]
 
 export default () => {
   const { t } = useTranslation("user")
 
-  const inputRef = useRef(null)
-  const [isSearch, setIsSearch] = useState<boolean>(false)
   const [searchId, setSearchId] = useState<number>()
-  const [valueToFilter, setValueToFilter] = useState<string>()
-
   const { isLoading, isError, data, refetch } = useUsersQuery()
   const { data: searchedData, refetch: searchUser } = useSingleUserQuery({
     searchId,
     enabled: false
+  })
+
+  const { inputRef, valueToFilter, searchHandler } = useSearch({
+    searchSingle: searchUser,
+    refetch,
+    searchId
   })
 
   const getFilteredUserData = useCallback(() => {
@@ -46,30 +42,6 @@ export default () => {
 
     return filteredArray
   }, [valueToFilter, data])
-
-  const searchHandler = () => setIsSearch(true)
-
-  useEffect(() => {
-    if (searchId !== undefined) {
-      searchUser()
-    } else {
-      // console.log({ searchId, isSearch, valueToFilter })
-      if (searchId === undefined && isSearch) {
-        const current = inputRef.current as ForwardedRef<AtlaskitSelectRefType>
-        const inputValue = (current as unknown as AtlaskitSelectRefType)?.select
-          ?.inputRef?.value
-        // console.log({ inputValue })
-
-        if (inputValue === "") {
-          refetch()
-          setValueToFilter("")
-        } else {
-          setValueToFilter(inputValue)
-        }
-        setTimeout(() => setIsSearch(false), 500)
-      }
-    }
-  }, [searchId, isSearch])
 
   if (isLoading) {
     return (
