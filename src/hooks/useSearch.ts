@@ -1,17 +1,24 @@
 import { AtlaskitSelectRefType } from "@atlaskit/select/dist/types/types"
 import { QueryObserverResult } from "@tanstack/react-query"
-import { ForwardedRef, useEffect, useRef, useState } from "react"
+import { ForwardedRef, useCallback, useEffect, useRef, useState } from "react"
 
 interface IUseSearch<T = any> {
   searchId: number | undefined
   searchSingle: () => Promise<QueryObserverResult<T, unknown>>
   refetch: () => Promise<QueryObserverResult<T[], unknown>>
+  data: T[]
+  searchKeys: string[]
 }
 
-export const useSearch = ({ searchId, searchSingle, refetch }: IUseSearch) => {
+export const useSearch = ({
+  searchId,
+  searchSingle,
+  refetch,
+  data,
+  searchKeys
+}: IUseSearch) => {
   const inputRef = useRef(null)
   const [isSearch, setIsSearch] = useState<boolean>(false)
-
   const [valueToFilter, setValueToFilter] = useState<string>()
 
   const searchHandler = () => setIsSearch(true)
@@ -38,9 +45,25 @@ export const useSearch = ({ searchId, searchSingle, refetch }: IUseSearch) => {
     }
   }, [searchId, isSearch])
 
+  const getFilteredData = useCallback(() => {
+    const filteredArray: typeof data = []
+
+    if (data) {
+      for (const key of searchKeys) {
+        const filteredByKey = data.filter((i) =>
+          i[key].toLowerCase().includes(valueToFilter?.toLowerCase() ?? "")
+        )
+        filteredArray.push(...filteredByKey)
+      }
+    }
+
+    return filteredArray
+  }, [valueToFilter, data])
+
   return {
     inputRef,
-    valueToFilter,
-    searchHandler
+    // valueToFilter,
+    searchHandler,
+    getFilteredData
   }
 }

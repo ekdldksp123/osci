@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useCallback, useState } from "react"
 import DynamicTable from "@atlaskit/dynamic-table"
 import { Flex, Grid } from "@atlaskit/primitives"
 import { AutoComplete, SectionMessage } from "../common"
@@ -7,6 +7,8 @@ import { Label } from "@atlaskit/form"
 import { DatePicker } from "@atlaskit/datetime-picker"
 import { useTranslation } from "react-i18next"
 import { v4 as uuidv4 } from "uuid"
+import { useSearch } from "../../hooks"
+import { Post } from "../../types/post"
 
 type ListItem = {
   id: number
@@ -18,6 +20,8 @@ type ListItemKey = keyof ListItem
 
 const HEADER_KEYS: ListItemKey[] = ["id", "title", "createdAt"]
 
+const SEARCH_KEYS = ["title"]
+
 export default () => {
   const [searchId, setSearchId] = useState<number>()
 
@@ -27,6 +31,27 @@ export default () => {
     searchId,
     enabled: false
   })
+
+  const { inputRef, valueToFilter, searchHandler } = useSearch({
+    searchSingle: searchPost,
+    refetch,
+    searchId
+  })
+
+  const getFilteredPostData = useCallback(() => {
+    const filteredArray: Post[] = []
+
+    if (data) {
+      for (const key of SEARCH_KEYS) {
+        const filteredByKey = data.filter((i) =>
+          i[key].toLowerCase().includes(valueToFilter?.toLowerCase() ?? "")
+        )
+        filteredArray.push(...filteredByKey)
+      }
+    }
+
+    return filteredArray
+  }, [valueToFilter, data])
 
   const headers = {
     cells: HEADER_KEYS.map((key) => ({ key, content: t(key) }))
