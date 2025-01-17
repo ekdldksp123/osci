@@ -12,7 +12,7 @@ export const getAllPosts = async () => {
   }
 }
 
-export const getSinglePostWithComments = async (postId: string) => {
+export const getSinglePostWithComments = async (postId: number) => {
   try {
     const { data } = await instance.get(`${API_PREFIX}/${postId}`)
     const { data: commentData } = await instance.get(`/comments/post/${postId}`)

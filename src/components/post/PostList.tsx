@@ -1,8 +1,8 @@
-import React from "react"
+import React, { useState } from "react"
 import DynamicTable from "@atlaskit/dynamic-table"
 import { Flex, Grid } from "@atlaskit/primitives"
 import { AutoComplete, SectionMessage } from "../common"
-import { usePostsQuery } from "../../queries"
+import { usePostsQuery, useSinglePostQuery } from "../../queries"
 import { Label } from "@atlaskit/form"
 import { DatePicker } from "@atlaskit/datetime-picker"
 import { useTranslation } from "react-i18next"
@@ -19,8 +19,14 @@ type ListItemKey = keyof ListItem
 const HEADER_KEYS: ListItemKey[] = ["id", "title", "createdAt"]
 
 export default () => {
+  const [searchId, setSearchId] = useState<number>()
+
   const { t } = useTranslation("post")
   const { isLoading, isError, data, refetch } = usePostsQuery()
+  const { data: searchedData, refetch: searchPost } = useSinglePostQuery({
+    searchId,
+    enabled: false
+  })
 
   const headers = {
     cells: HEADER_KEYS.map((key) => ({ key, content: t(key) }))
@@ -32,7 +38,12 @@ export default () => {
 
   return (
     <Grid gap="space.200" alignItems="center">
-      <AutoComplete data={[]} keys={[]} placeholder="Search" onChange={} />
+      <AutoComplete
+        data={data ?? []}
+        keys={["title"]}
+        placeholder={t("search.placeholder")}
+        onChange={setSearchId}
+      />
       <Grid templateColumns="1fr 1fr" gap="space.100">
         <Flex direction="column">
           <Label id="date" htmlFor="default-date-picker-example">
