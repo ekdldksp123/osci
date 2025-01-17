@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react"
+import React from "react"
 
 import Button, { IconButton } from "@atlaskit/button/new"
 import CrossIcon from "@atlaskit/icon/glyph/cross"

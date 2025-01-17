@@ -8,11 +8,16 @@ import { CommentType } from "~/types/post"
 import Avatar from "@atlaskit/avatar"
 import { useTranslation } from "react-i18next"
 import { v4 as uuidv4 } from "uuid"
+import { Grid } from "@atlaskit/primitives"
 
-export default (comments: CommentType[]) => {
+interface CommentListProps {
+  comments: CommentType[]
+}
+
+export default ({ comments }: CommentListProps) => {
   const { t } = useTranslation("post")
   return (
-    <>
+    <Grid>
       {comments.map(({ userId, createdAt, content }) => (
         <Comment
           key={uuidv4()}
@@ -26,6 +31,6 @@ export default (comments: CommentType[]) => {
           ]}
         ></Comment>
       ))}
-    </>
+    </Grid>
   )
 }

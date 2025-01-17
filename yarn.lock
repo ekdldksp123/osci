@@ -250,7 +250,7 @@
     lodash "^4.17.21"
     tiny-invariant "^1.2.0"
 
-"@atlaskit/heading@^4.0.0":
+"@atlaskit/heading@^4.0.0", "@atlaskit/heading@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@atlaskit/heading/-/heading-4.0.1.tgz#2167113bc1e95e36848690292cb480997d65710a"
   integrity sha512-WCs1RGePH41oSmBNoRm/va6wVOPTpEim0QrZioBsQgf/lPN1tb9FYXQpnBl5F3431Zfx3pXQL85GP30gxHUWMg==
@@ -362,6 +362,14 @@
     "@babel/runtime" "^7.0.0"
     "@emotion/react" "^11.7.1"
     bind-event-listener "^3.0.0"
+
+"@atlaskit/page@^12.6.2":
+  version "12.6.2"
+  resolved "https://registry.yarnpkg.com/@atlaskit/page/-/page-12.6.2.tgz#005ea12f5b81fb76eb35b9380cbdd7e5db712b9f"
+  integrity sha512-MHYnryWw0hbK3vNS0vGkuUngvuLgViW3RQKxLVfJFTHOwd4FGwcjGnuLR+1mGrYDioHYtyHCuKWlBGJdbdwcvw==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    "@emotion/react" "^11.7.1"
 
 "@atlaskit/pagination@^15.0.0":
   version "15.0.1"
@@ -530,6 +538,17 @@
     "@atlaskit/interaction-context" "^2.4.0"
     "@atlaskit/theme" "^14.0.0"
     "@atlaskit/tokens" "^3.0.0"
+    "@babel/runtime" "^7.0.0"
+    "@emotion/react" "^11.7.1"
+
+"@atlaskit/spinner@^16.3.6":
+  version "16.3.6"
+  resolved "https://registry.yarnpkg.com/@atlaskit/spinner/-/spinner-16.3.6.tgz#755e84b1eae286e09bdb0a94c4b4208cb26ce1e1"
+  integrity sha512-H+/I0Xlnmit+kfl5ijqONHXEZAuZqXjmIl9e8TTinYtrWS8zAOTDVOuvnGaO0WPgnKRLzdlHbIg7/WEgOgywyw==
+  dependencies:
+    "@atlaskit/interaction-context" "^2.4.0"
+    "@atlaskit/theme" "^14.0.0"
+    "@atlaskit/tokens" "^3.1.0"
     "@babel/runtime" "^7.0.0"
     "@emotion/react" "^11.7.1"
 
