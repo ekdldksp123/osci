@@ -3,12 +3,12 @@ import DynamicTable from "@atlaskit/dynamic-table"
 import { Flex, Grid } from "@atlaskit/primitives"
 import { AutoComplete, SectionMessage } from "../common"
 import { usePostsQuery, useSinglePostQuery } from "../../queries"
-import { Label } from "@atlaskit/form"
 import { DatePicker } from "@atlaskit/datetime-picker"
 import { useTranslation } from "react-i18next"
 import { v4 as uuidv4 } from "uuid"
 import { useSearch } from "../../hooks"
-import { Post } from "../../types/post"
+import { IconButton } from "@atlaskit/button/new"
+import FilterIcon from "@atlaskit/icon/core/filter"
 
 type ListItem = {
   id: number
@@ -20,42 +20,46 @@ type ListItemKey = keyof ListItem
 
 const HEADER_KEYS: ListItemKey[] = ["id", "title", "createdAt"]
 
-const SEARCH_KEYS = ["title"]
+const searchKeys = ["title"]
 
 export default () => {
   const [searchId, setSearchId] = useState<number>()
+  const [startDate, setStartDate] = useState<string>()
+  const [endDate, setEndDate] = useState<string>()
 
   const { t } = useTranslation("post")
   const { isLoading, isError, data, refetch } = usePostsQuery()
-  const { data: searchedData, refetch: searchPost } = useSinglePostQuery({
+  const { refetch: searchPost } = useSinglePostQuery({
     searchId,
     enabled: false
   })
 
-  const { inputRef, valueToFilter, searchHandler } = useSearch({
+  const { inputRef, searchHandler, getFilteredData } = useSearch({
     searchSingle: searchPost,
     refetch,
-    searchId
+    searchId,
+    data: data ?? [],
+    searchKeys
   })
-
-  const getFilteredPostData = useCallback(() => {
-    const filteredArray: Post[] = []
-
-    if (data) {
-      for (const key of SEARCH_KEYS) {
-        const filteredByKey = data.filter((i) =>
-          i[key].toLowerCase().includes(valueToFilter?.toLowerCase() ?? "")
-        )
-        filteredArray.push(...filteredByKey)
-      }
-    }
-
-    return filteredArray
-  }, [valueToFilter, data])
 
   const headers = {
     cells: HEADER_KEYS.map((key) => ({ key, content: t(key) }))
   }
+
+  const getFilteredPostData = useCallback(() => {
+    const posts = getFilteredData()
+    if (!startDate || !endDate) {
+      return posts
+    }
+
+    const start = new Date(startDate)
+    const end = new Date(endDate)
+
+    return posts.filter(({ createdAt }) => {
+      const createdAtDate = new Date(createdAt)
+      return createdAtDate >= start && createdAtDate <= end
+    })
+  }, [startDate, endDate, getFilteredData])
 
   if (isError) {
     return <SectionMessage type="error" message="Failed to load post data" />
@@ -64,41 +68,44 @@ export default () => {
   return (
     <Grid gap="space.200" alignItems="center">
       <AutoComplete
-        data={data ?? []}
-        keys={["title"]}
-        placeholder={t("search.placeholder")}
+        ref={inputRef}
+        data={getFilteredPostData()}
+        keys={searchKeys}
         onChange={setSearchId}
+        placeholder={t("search.placeholder")}
+        onSearch={searchHandler}
       />
-      <Grid templateColumns="1fr 1fr" gap="space.100">
+      <Grid templateColumns="1fr 1fr 0.1fr" gap="space.100" alignItems="center">
         <Flex direction="column">
-          <Label id="date" htmlFor="default-date-picker-example">
-            Start date
-          </Label>
           <DatePicker
-            id="default-date-picker-example"
+            dateFormat="YYYY-MM-DD"
+            placeholder={t("startDate") || ""}
+            id="post-startDate"
             clearControlLabel="Clear date"
             shouldShowCalendarButton
-            inputLabelId="date"
             openCalendarLabel="open calendar"
+            onChange={(e) => setStartDate(e)}
           />
         </Flex>
         <Flex direction="column">
-          <Label id="date" htmlFor="default-date-picker-example">
-            End date
-          </Label>
           <DatePicker
-            id="default-date-picker-example"
+            dateFormat="YYYY-MM-DD"
+            placeholder={t("endDate") || ""}
+            id="post-endDate"
             clearControlLabel="Clear date"
             shouldShowCalendarButton
-            inputLabelId="date"
             openCalendarLabel="open calendar"
+            onChange={(e) => setEndDate(e)}
           />
+        </Flex>
+        <Flex justifyContent="center">
+          <IconButton icon={FilterIcon} label="Filter" type="submit" />
         </Flex>
       </Grid>
       <DynamicTable
         caption=""
         head={headers}
-        rows={data?.map(({ id, title, createdAt }) => ({
+        rows={getFilteredPostData().map(({ id, title, createdAt }) => ({
           key: uuidv4(),
           cells: [
             { key: id, content: id },
@@ -109,8 +116,6 @@ export default () => {
         rowsPerPage={5}
         defaultPage={1}
         isFixedSize
-        defaultSortKey="term"
-        defaultSortOrder="ASC"
         onSort={() => console.log("onSort")}
         onSetPage={() => console.log("onSetPage")}
         isLoading={isLoading}

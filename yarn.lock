@@ -89,6 +89,26 @@
     "@babel/runtime" "^7.0.0"
     "@emotion/react" "^11.7.1"
 
+"@atlaskit/button@^20.3.10":
+  version "20.3.10"
+  resolved "https://registry.yarnpkg.com/@atlaskit/button/-/button-20.3.10.tgz#e08945a8ed2ef3d627b51b2e4a15818c4dd41321"
+  integrity sha512-uI5JcY7w/u6fcL8QN478R49iOWjp/Ye4Ykj/I+XzzQJa5RlPs9uZhiOfCrdZLgTS9nd+I9Q4b6ubJ1wYHbIIDw==
+  dependencies:
+    "@atlaskit/analytics-next" "^10.2.0"
+    "@atlaskit/ds-lib" "^3.3.0"
+    "@atlaskit/focus-ring" "^2.0.0"
+    "@atlaskit/icon" "^23.4.0"
+    "@atlaskit/interaction-context" "^2.4.0"
+    "@atlaskit/platform-feature-flags" "^0.3.0"
+    "@atlaskit/primitives" "^13.3.0"
+    "@atlaskit/spinner" "^16.3.0"
+    "@atlaskit/theme" "^14.0.0"
+    "@atlaskit/tokens" "^3.1.0"
+    "@atlaskit/tooltip" "^19.0.0"
+    "@atlaskit/visually-hidden" "^1.5.0"
+    "@babel/runtime" "^7.0.0"
+    "@emotion/react" "^11.7.1"
+
 "@atlaskit/calendar@^16.2.0":
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/@atlaskit/calendar/-/calendar-16.2.0.tgz#9b6ca317646228438d23011598dbbacb9c32db8f"
