@@ -7,5 +7,7 @@
     "createdAt": "CreatedAt",
     "search.placeholder": "Search by Title",
     "update": "Update",
-    "delete": "Delete"
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
 }
