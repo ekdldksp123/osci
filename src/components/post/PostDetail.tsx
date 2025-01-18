@@ -1,7 +1,7 @@
-import React, { Suspense, lazy, useMemo } from "react"
+import React from "react"
 
 import Heading from "@atlaskit/heading"
-import { Flex, Grid, Stack } from "@atlaskit/primitives"
+import { Flex, Grid } from "@atlaskit/primitives"
 import { useCommentsOfPostQuery, useSinglePostQuery } from "../../queries"
 import Spinner from "@atlaskit/spinner"
 import { CommentType, Post } from "../../types/post"
@@ -10,8 +10,6 @@ import Page, { GridColumn } from "@atlaskit/page"
 import { ButtonGroup } from "@atlaskit/button"
 import { useTranslation } from "react-i18next"
 import Button from "@atlaskit/button"
-
-// const CommentList = lazy(() => import("./CommentList"))
 
 interface PostDetailProps {
   postId: string
@@ -45,26 +43,27 @@ export default ({ postId }: PostDetailProps) => {
 
   return (
     <Page>
-      <Flex gap="space.300">
-        <Heading size="medium" as="h1">
-          {post?.title}
-        </Heading>
-        <span>{post?.createdAt}</span>
-      </Flex>
+      <Grid gap="space.500">
+        <Flex direction="column" gap="space.100">
+          <Flex gap="space.300">
+            <Heading size="medium" as="h1">
+              {post?.title}
+            </Heading>
+            <span>{post?.createdAt}</span>
+          </Flex>
 
-      <p>{post?.content}</p>
+          <p>{post?.content}</p>
 
-      <GridColumn>
-        <ButtonGroup>
-          <Button>{t("update")}</Button>
-          <Button>{t("delete")}</Button>
-        </ButtonGroup>
-      </GridColumn>
-      {comments && (
-        // <Suspense fallback={<Spinner size="large" />}>
-        <CommentList comments={comments} />
-        // </Suspense>
-      )}
+          <GridColumn>
+            <ButtonGroup>
+              <Button appearance="primary">{t("update")}</Button>
+              <Button>{t("delete")}</Button>
+            </ButtonGroup>
+          </GridColumn>
+        </Flex>
+
+        {comments && <CommentList comments={comments} />}
+      </Grid>
     </Page>
   )
 }

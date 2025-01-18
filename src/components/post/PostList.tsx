@@ -76,7 +76,6 @@ export default () => {
       />
       <PostFilter setStartDate={setStartDate} setEndDate={setEndDate} />
       <DynamicTable
-        caption=""
         head={headers}
         rows={getFilteredPostData().map(({ id, title, createdAt }) => ({
           key: uuidv4(),
@@ -86,7 +85,7 @@ export default () => {
             { key: createdAt, content: createdAt }
           ]
         }))}
-        rowsPerPage={5}
+        rowsPerPage={15}
         defaultPage={1}
         isLoading={isLoading}
       />

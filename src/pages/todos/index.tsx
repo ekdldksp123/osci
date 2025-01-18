@@ -1,7 +1,8 @@
 import React, { FC } from "react"
+import { TodoList } from "../../components/todo"
 
 const Todos: FC = () => {
-  return <h1>Todos</h1>
+  return <TodoList />
 }
 
 export default Todos

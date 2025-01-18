@@ -10,7 +10,7 @@ import { MenuItem } from "~/types"
 export const MENU_LIST: MenuItem[] = [
   { localKey: "users", href: "/" },
   { localKey: "posts", href: "/posts" },
-  { localKey: "todos", href: "/todos" }
+  { localKey: "todos", href: "/todo" }
 ]
 
 export default () => {
