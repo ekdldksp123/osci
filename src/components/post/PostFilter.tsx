@@ -15,7 +15,7 @@ export default ({ setStartDate, setEndDate }: PostFilterProps) => {
   const { t } = useTranslation("post")
 
   return (
-    <Grid templateColumns="1fr 1fr 0.1fr" gap="space.100" alignItems="center">
+    <Grid templateColumns="1fr 1fr" gap="space.100" alignItems="center">
       <Flex direction="column">
         <DatePicker
           dateFormat="YYYY-MM-DD"
@@ -37,9 +37,6 @@ export default ({ setStartDate, setEndDate }: PostFilterProps) => {
           openCalendarLabel="open calendar"
           onChange={(e) => setEndDate(e)}
         />
-      </Flex>
-      <Flex justifyContent="center">
-        <IconButton icon={FilterIcon} label="Filter" type="submit" />
       </Flex>
     </Grid>
   )

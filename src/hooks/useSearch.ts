@@ -57,7 +57,14 @@ export const useSearch = ({
       }
     }
 
-    return Array.from(new Set(filteredArray))
+    if (filteredArray.length) {
+      // 중복된 데이터 제거
+      return Array.from(new Set(filteredArray))
+    }
+
+    console.log("filtered data is not existing", { data, searchKeys })
+
+    return filteredArray
   }, [valueToFilter, data])
 
   return {
