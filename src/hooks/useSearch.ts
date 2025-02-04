@@ -57,12 +57,11 @@ export const useSearch = ({
       }
     }
 
-    return filteredArray
+    return Array.from(new Set(filteredArray))
   }, [valueToFilter, data])
 
   return {
     inputRef,
-    // valueToFilter,
     searchHandler,
     getFilteredData
   }
